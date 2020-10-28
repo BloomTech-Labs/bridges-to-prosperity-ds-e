@@ -7,7 +7,12 @@
 
 ## Problem 2: Predicting which sites will be technically rejected in future engineering reviews
 
-Any sites with a "Yes" in the column AQ have undergone a full technical review, and of those, the Stage (column L) can be considered to be correct. Any sites with a "Yes" in Column AQ have not undergone a full technical review, and the Stage is based on the assessor's initial estimate as to whether the site was technically feasible or not. We want to know if we can use the sites that have been reviewed to understand which of the sites that haven't yet been reviewed are likely to be rejected by the senior engineering team. Any of the data can be used, but our guess is that Estimated Span, Height Differential Between Banks, Created By, and Flag for Rejection are likely to be the most reliable predictors. 
+Any sites with a "Yes" in the column `Senior Engineering Review Conducted` have undergone a full technical review, and of those, the Stage (`Bridge Opportunity: Stage`) can be considered to be correct. Any sites without a "Yes" in Column `Senior Engineering Review Conducted` have not undergone a full technical review, and the Stage is based on the assessor's initial estimate as to whether the site was technically feasible or not. We want to know if we can use the sites that have been reviewed to understand which of the sites that haven't yet been reviewed are likely to be rejected by the senior engineering team. Any of the data can be used, but our guess is that Estimated Span, Height Differential Between Banks, Created By, and Flag for Rejection are likely to be the most reliable predictors. 
+
+
+-------------------------------------------------------------------
+
+
 
 # Data Dictionary
 | Field | Description |
@@ -55,3 +60,16 @@ Any sites with a "Yes" in the column AQ have undergone a full technical review, 
 | Height differential between banks | nan |
 | Bridge Opportunity: General Project Photos | Link to Flickr photo album, if applicable |
 | Bridge Opportunity: CaseSafeID | Unique ID for dataloading to Salesforce  |
+| Senior Engineering Review Conducted | nan |
+| 4WD Accessibility | How much of the year the path to the site is accessible by a four-wheel drive vehicle |
+| Name of nearest city | nan |
+| Name of nearest paved or sealed road | nan |
+| Bridge classification | Assessor's estimate of whether a bridge at the location would be a standard design or not |
+| Flag for Rejection | Assessor's estimate of whether or not the bridge should be rejected for immediate construction, usually on the basis of technical feasibility |
+| Rejection Reason | Reason the site was flagged for rejection, if applicable |
+| Bridge Type | Assessor's estimate of what type of bridge would be the best fit |
+| Estimated span (m) | Assessor's estimate of the bridge length |
+| Height differential between banks | nan |
+| Bridge Opportunity: General Project Photos | Link to Flickr photo album, if applicable |
+| Bridge Opportunity: CaseSafeID | Unique ID for dataloading to Salesforce  |
+| Senior Engineering Review Conducted | nan |
