@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "jdblackstar/labs27-a-bridges_to_prosperity-ds_web",
+    "Name": "noah40povis/labs-bridges_to_prosperity-ds",
     "Update": "true"
   },
   "Ports": [
