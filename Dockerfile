@@ -8,6 +8,10 @@ WORKDIR /usr/src/app
 RUN python -m pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-
+EXPOSE 80 
+CMD ["python", "main.py"]
 # add app
 COPY . .
+
+
+

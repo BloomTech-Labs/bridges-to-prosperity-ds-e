@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "noah40povis/labs-bridges_to_prosperity-ds",
+    "Name": "docker/io/noah40povis/bridges-to-prosperity-ds-e_web:latest",
     "Update": "true"
   },
   "Ports": [
@@ -11,3 +11,4 @@
   ], 
   "Command": "uvicorn app.main:app --workers 1 --host 0.0.0.0 --port 8000"
 }
+
