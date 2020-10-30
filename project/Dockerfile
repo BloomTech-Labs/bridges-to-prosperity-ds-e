@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 EXPOSE 8000 
 # add app
 COPY . .
-CMD ["python", "main.py"]
+CMD ["python", "./project/main.py"]
 RUN mkdir hello
 
 
