@@ -23,7 +23,7 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
-@app.route('/healthcheck')
+@app.get('/health')
 def healthcheck():
     return "OK"
 
