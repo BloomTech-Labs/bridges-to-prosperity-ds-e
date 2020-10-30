@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # install python dependencies
 RUN python -m pip install --upgrade pip
-COPY ./project/requirements.txt .
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 EXPOSE 8000 
 # add app
