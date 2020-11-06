@@ -23,9 +23,5 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
-@app.get('/health')
-def healthcheck():
-    return "OK"
-
 if __name__ == '__main__':
     uvicorn.run(app)
