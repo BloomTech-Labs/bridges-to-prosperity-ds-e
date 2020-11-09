@@ -11,10 +11,10 @@ data_folder = Path('app/api/data/')
 csv_file = data_folder / "cleaned4.csv"
 
 
-@router.post('/csv')
+@router.get('/csv')
 async def get_csv():
     """
-    Returns the cleaned csv file
+    Returns the cleaned csv of bridge data as a downloadable .txt file
     """
 
     return FileResponse(csv_file, media_type='.csv', filename='CleanedCSV')
