@@ -106,7 +106,6 @@ async def get_all_data():
     if conn is not None:
         print('We have lift off')
         data = fetch_all()
-        conn.close()
         return data
     else:
         print('ERROR')
@@ -174,7 +173,6 @@ async def get_record(project_code):
     if conn is not None:
         print('We have lift off')
         data = fetch_query_given_project_and_columns(project_code)
-        conn.close()
         return data
     else:
         print('ERROR')
