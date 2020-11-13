@@ -18,7 +18,6 @@ USER=os.getenv("USER")
 PASSWORD=os.getenv("PASSWORD")
 PORT=os.getenv("PORT")
 
-
 @router.get('/all_data')
 async def get_all_data():
     """
@@ -183,3 +182,15 @@ async def get_record(project_code):
         return data
     else:
         print('ERROR')
+
+
+@router.post('/prediction')
+async def get_record(project_code):
+    conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
+
+    cursor = conn.cursor()
+    query = f"""SELECT * FROM "dataz" WHERE project_code = '{project_code}';"""
+    cursor.execute(query)
+    result = cursor.fetchall()
+    result = result[0][-1]
+    return result
