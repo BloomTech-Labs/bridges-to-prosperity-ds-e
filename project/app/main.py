@@ -4,6 +4,7 @@ import uvicorn
 
 from app.api import sql, csv_api, viz 
 
+
 app = FastAPI(
     title='Labs28-Team-Spencer',
     description="A REST API that delivers data assets to the front and backend of [our team's webapp](https://e.bridgestoprosperity.dev/) for Bridges to Prosperity",
