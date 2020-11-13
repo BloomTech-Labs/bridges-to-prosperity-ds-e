@@ -186,10 +186,30 @@ async def get_record(project_code):
 
 @router.post('/prediction')
 async def get_record(project_code):
+    '''
+    Returns the the model's prediction of whether or not the site is suitable or unsuitable  
+    **1007561 should return "Unsuitable"**
+    '''
     conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
 
     cursor = conn.cursor()
     query = f"""SELECT * FROM "dataz" WHERE project_code = '{project_code}';"""
+    cursor.execute(query)
+    result = cursor.fetchall()
+    result = result[0][-1]
+    return result
+
+
+@router.post('/probability')
+async def get_record(project_code):
+    '''
+    Returns the the probability that a site is suitable or unsuitable for building according to the model  
+    **1007561 should return 0.25086823**
+    '''
+    conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
+
+    cursor = conn.cursor()
+    query = f"""SELECT * FROM "likelihood_predictions" WHERE project_code = '{project_code}';"""
     cursor.execute(query)
     result = cursor.fetchall()
     result = result[0][-1]
