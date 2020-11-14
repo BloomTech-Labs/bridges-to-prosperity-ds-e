@@ -10,6 +10,7 @@ from fastapi import APIRouter
 log = logging.getLogger(__name__)
 router = APIRouter()
 
+#this is to grab the .env file with the credentials 
 load_dotenv()
 
 HOST=os.getenv("HOST")
@@ -78,7 +79,8 @@ async def get_all_data():
         parsed = json.loads(df_json)
         return parsed
 
-        
+    #this if statement is used to call back to the fetch_all above 
+    #     
     if conn is not None:
         print('We have lift off')
         data = fetch_all()
@@ -183,3 +185,33 @@ async def get_record(project_code):
         return data
     else:
         print('ERROR')
+@router.post('/prediction')
+async def get_record(project_code):
+    '''
+    Returns the the model's prediction of whether or not the site is suitable or unsuitable  
+    **1007561 should return "Unsuitable"**
+    '''
+    conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
+
+    cursor = conn.cursor()
+    query = f"""SELECT * FROM "dataz" WHERE project_code = '{project_code}';"""
+    cursor.execute(query)
+    result = cursor.fetchall()
+    result = result[0][-1]
+    return result
+
+
+@router.post('/probability')
+async def get_record(project_code):
+    '''
+    Returns the the probability that a site is suitable or unsuitable for building according to the model  
+    **1007561 should return 0.25086823**
+    '''
+    conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
+
+    cursor = conn.cursor()
+    query = f"""SELECT * FROM "likelihood_predictions" WHERE project_code = '{project_code}';"""
+    cursor.execute(query)
+    result = cursor.fetchall()
+    result = result[0][-1]
+    return result

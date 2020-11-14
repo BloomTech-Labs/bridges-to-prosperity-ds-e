@@ -8,8 +8,8 @@ WORKDIR /usr/src/app
 RUN python -m pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-EXPOSE 80 
-EXPOSE 8000
+# EXPOSE 80 
+# EXPOSE 8000
 # add app
 COPY . .
 RUN mkdir hello
