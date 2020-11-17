@@ -19,11 +19,12 @@ USER=os.getenv("USER")
 PASSWORD=os.getenv("PASSWORD")
 PORT=os.getenv("PORT")
 
-
 @router.get('/all_data')
 async def get_all_data():
     """
-    Returns all records from the database as text
+    Returns all records from the database as text  
+
+    These records can be found in the bridges_1.csv file
 
     # Response
     - ID
@@ -92,7 +93,9 @@ async def get_all_data():
 @router.get('/get_all_project_codes')
 async def get_all_project_codes():
     """
-    Returns all project codes in the database
+    Returns all project codes in the database  
+
+    These project codes can be found in the bridges_1.csv file
     """
     conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
 
@@ -117,7 +120,9 @@ async def get_all_project_codes():
 @router.post('/get_one_project')
 async def get_record(project_code):
     """
-    Returns the information of a single project_code  
+    Returns the information of a single project_code from the database  
+
+    These records can be found in the bridges_1.csv file      
 
     If you don't have a project_code in mind, try **1007561**  
 
@@ -189,6 +194,9 @@ async def get_record(project_code):
 async def get_record(project_code):
     '''
     Returns the the model's prediction of whether or not the site is suitable or unsuitable  
+
+    These predictions can be found in our bridges_2.csv file  
+
     **1007561 should return "Unsuitable"**
     '''
     conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
@@ -205,6 +213,9 @@ async def get_record(project_code):
 async def get_record(project_code):
     '''
     Returns the the probability that a site is suitable or unsuitable for building according to the model  
+
+    These probabilities can be found in our bridges_3.csv file  
+    
     **1007561 should return 0.25086823**
     '''
     conn = psycopg2.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=PORT)
