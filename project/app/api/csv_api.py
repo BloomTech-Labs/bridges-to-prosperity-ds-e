@@ -17,4 +17,5 @@ async def get_csv():
     Returns the cleaned csv (app/api/data/cleaned4.csv) of bridge data as a downloadable .txt file
     """
 
+
     return FileResponse(csv_file, media_type='.csv', filename='CleanedCSV.csv')

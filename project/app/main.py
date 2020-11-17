@@ -16,6 +16,7 @@ app.include_router(csv_api.router)
 app.include_router(viz_noah.router)
 app.include_router(viz_nate3.router)
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
