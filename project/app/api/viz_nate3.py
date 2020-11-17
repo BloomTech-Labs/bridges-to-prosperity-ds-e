@@ -108,35 +108,29 @@ async def vizn3(project_code: str):
             'River crossing injuries in last 3 years', 
             'Overall Impact Score']
     possible = [100, 100, 100, 100,100]
-    new_c = {'Category':columns, 'Score':adj_values, 'Possible': possible}
+    new_c = {'Category':columns, 'Actual':values, 'Score':adj_values, 'Possible': possible}
     new_df = pd.DataFrame(data=new_c)
 
     # create the visualization
     fig = go.Figure(go.Bar(
             x=new_df['Score'], 
             y=columns,
-            name='Actual Percentile',
             orientation='h',
+            text = new_df['Actual'],
             marker=dict(
               color='rgba(0, 158, 228, 1)',
-              line=dict(color='rgba(58, 71, 80, 1.0)', width=2)
-        )))
-
-    fig.add_trace(go.Bar(
-        y=columns,
-        x=new_df['Possible']-new_df['Score'],
-        name='Potential Percentile',
-        orientation='h',
-        marker=dict(
-            color='rgba(58, 71, 80, 0.1)',
-            line=dict(color='rgba(58, 71, 80, 1.0)', width=2)
-        )
-    ))
+              line=dict(color='rgba(58, 71, 80, 1.0)', width=2)),
+            hovertemplate = 
+            "<b>%{text} %{y}</b><br><br>" + 
+            "Percentile: %{x}"
+            ))
 
     fig.update_xaxes(
             title_text = "Key Impact Metrics (Percentile)",
             title_font = {"size": 20},
-            title_standoff = 25)
+            title_standoff = 25,
+            range=[0,100]
+            )
 
     fig.update_layout(barmode='stack')
 
