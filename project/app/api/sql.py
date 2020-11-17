@@ -10,6 +10,7 @@ from fastapi import APIRouter
 log = logging.getLogger(__name__)
 router = APIRouter()
 
+#this is to grab the .env file with the credentials 
 load_dotenv()
 
 HOST=os.getenv("HOST")
@@ -79,7 +80,8 @@ async def get_all_data():
         parsed = json.loads(df_json)
         return parsed
 
-        
+    #this if statement is used to call back to the fetch_all above 
+    #     
     if conn is not None:
         print('We have lift off')
         data = fetch_all()
@@ -188,8 +190,6 @@ async def get_record(project_code):
         return data
     else:
         print('ERROR')
-
-
 @router.post('/prediction')
 async def get_record(project_code):
     '''
