@@ -38,12 +38,19 @@ async def viz(project_code: str):
     Use **1007561** as an example
     '''
     project_code_row = neighbors_data.loc[neighbors_data['main'] == f"{project_code}"]
+    #transform row into single column to make it easier to manipulate as a list
     transformed_project_code = project_code_row.T.dropna()
+    #name column PG 
     transformed_project_code.columns = ["PG"]
+    #convert floats and int to single data type 
     transformed_project_code["PG"] = transformed_project_code["PG"].astype(int)
+    #convert back str 
     transformed_project_code["PG"] = transformed_project_code["PG"].astype(str)
+    #convert pandas series to list for manipulation purposes
     lst =list(transformed_project_code["PG"])
+    #grab only the rows that have the project code (nearest neighbors) for plotly graph 
     knn_df = viz_df.loc[viz_df['Project_code'].isin(lst)]
+    #create a column that will contain the input project code that will be colored differently in the graph. See documentation for np.where() 
     knn_df["main"] = np.where(knn_df['Project_code']==f'{project_code}', 'selected', 'neighbors')
     
     fig = px.scatter(knn_df, x='Unsuitable', y='Suitable',
