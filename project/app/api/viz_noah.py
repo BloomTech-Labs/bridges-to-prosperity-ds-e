@@ -12,8 +12,13 @@ csv2_file = data_folder/"neighbors_data_updated.csv"
 viz_df = pd.read_csv(csv_file, index_col= [0])
 neighbors_data = pd.read_csv(csv2_file, index_col=[0])
 
-@router.get('/viz/{knn_visualization}')
+@router.get('/viz_noah/{knn_visualization}')
 async def viz(project_code: str):
+    '''
+    Returns a nearest neighbors visualization of similar bridge sites  
+    
+    Use **1007561** as an example
+    '''
     project_code_row = neighbors_data.loc[neighbors_data['main'] == f"{project_code}"]
     transformed_project_code = project_code_row.T.dropna()
     transformed_project_code.columns = ["PG"]

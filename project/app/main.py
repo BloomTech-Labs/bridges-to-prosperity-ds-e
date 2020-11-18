@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import sql, csv_api, viz_noah 
+from app.api import sql, csv_api, viz, viz_noah, viz_nate3
 
 app = FastAPI(
     title='Labs28-Team-Spencer',
@@ -14,6 +14,8 @@ app = FastAPI(
 app.include_router(sql.router)
 app.include_router(csv_api.router)
 app.include_router(viz_noah.router)
+app.include_router(viz_nate3.router)
+
 
 app.add_middleware(
     CORSMiddleware,
