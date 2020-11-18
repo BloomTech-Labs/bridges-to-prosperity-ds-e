@@ -15,7 +15,25 @@ neighbors_data = pd.read_csv(csv2_file, index_col=[0])
 @router.get('/viz_noah/{knn_visualization}')
 async def viz(project_code: str):
     '''
-    Returns a nearest neighbors visualization of similar bridge sites  
+    Returns a plotly scatterplot visualization of sites that have a similar probability of either being “Suitable” or “Unsuitable” to build a bridge. 
+    The goal of this visualization is to allow the stakeholders involved in bridge location planning and selecting process to find patterns in the features that each location has that will ultimately allow their processing time to decrease over time. 
+    The yellow dot is the site project number being input, while the green dots are the nearest neighbors to this location according to their probabilities. 
+    The probability for each site is measured according to features input into the semi-supervised model such as: 
+    -Bridge Classification
+    -Crossing (current method of crossing the water)
+    -Days per year river is flooded
+    -River crossing deaths in last 3 years
+    -River crossing injuries in last 3 years
+    -Cell service quality
+    -4WD Accessibility
+    -Bridge Type
+    -Proposed Bridge Location (GPS) (Latitude)
+    -Proposed Bridge Location (GPS) (Longitude)
+    -Height differential between banks (meters)
+    -Estimated span (meters)
+    The semi-supervised model used to gather the probabilities of each site was 
+    Label propagation from the skit-learn library. Label propagation is a machine learning algorithm that assigns labels to previously unlabeled data points 
+    and since we were working with a dataset that contained a majority of unlabeled instances it allowed us to extract more information from the data given.
     
     Use **1007561** as an example
     '''
